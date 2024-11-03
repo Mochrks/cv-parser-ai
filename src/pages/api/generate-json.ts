@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+                "Authorization": `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
             },
             body: JSON.stringify({
                 model: "gpt-4o-mini",
