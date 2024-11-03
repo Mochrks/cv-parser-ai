@@ -1,8 +1,7 @@
 "use client";
-
 import { useState } from "react";
 
-const TextInput = ({ extractKeywords }) => {
+const TextInput: React.FC<{ extractKeywords: (text: string) => void }> = ({ extractKeywords }) => {
     // console.log('API Key:', process.env.TEST)
     const [text, setText] = useState("");
 
@@ -30,7 +29,7 @@ const TextInput = ({ extractKeywords }) => {
 };
 
 
-const TextOutput = ({ keywords }) => {
+const TextOutput = ({ keywords }: { keywords: string[] }) => {
     const text = keywords;
 
     return (
@@ -49,7 +48,7 @@ export default function ExampleAI() {
     const [keywords, setKeywords] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const extractKeywords = async (text) => {
+    const extractKeywords = async (text: string) => {
         "use server";
         console.log(text);
 

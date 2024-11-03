@@ -117,7 +117,7 @@ export default function UploadFile() {
             console.log('JSON generated successfully');
         } catch (error) {
             console.error('Error:', error);
-            setOutput(`Error processing file: ${error.message}`);
+            setOutput(`Error processing file: `);
         } finally {
             setIsLoading(false);
         }
