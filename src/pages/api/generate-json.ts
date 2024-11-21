@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { OpenAI } from 'openai';
-import { CV_STRUCTURE_INSTRUCTIONS } from '@/utils/cvStructure';
+import { CV_STRUCTURE_INSTRUCTIONS_ONE } from '@/utils/cvStructure';
+import { CV_STRUCTURE_INSTRUCTIONS_TWO } from '@/utils/cvStructureTwo';
 
 const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY });
 
@@ -10,14 +11,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { text } = req.body;
+    const { text,template } = req.body;
+
+     const instructions = template === 'template2' ? CV_STRUCTURE_INSTRUCTIONS_TWO : CV_STRUCTURE_INSTRUCTIONS_ONE;
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         {
           role: "system",
-          content: CV_STRUCTURE_INSTRUCTIONS,
+          content: instructions,
         },
         {
           role: "user",

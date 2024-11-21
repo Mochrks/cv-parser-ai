@@ -56,7 +56,7 @@ export const CV_STRUCTURE = `{
   }
 }`;
 
-export const CV_STRUCTURE_INSTRUCTIONS = `
+export const CV_STRUCTURE_INSTRUCTIONS_ONE = `
 You are a CV parser that converts CV content into JSON format. 
 Always return the JSON in this exact structure:
 ${CV_STRUCTURE}

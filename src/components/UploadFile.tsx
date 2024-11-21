@@ -14,6 +14,7 @@ export default function UploadFile() {
     const [isLoading, setIsLoading] = useState(false);
     const [output, setOutput] = useState('');
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [template, setTemplate] = useState('template1');
 
     const handleDrag = (e: React.DragEvent) => {
         e.preventDefault();
@@ -104,7 +105,7 @@ export default function UploadFile() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ text }),
+                body: JSON.stringify({ text, template }),
             });
 
             if (!jsonResponse.ok) {
@@ -155,6 +156,20 @@ export default function UploadFile() {
                     </div>
                 )}
             </div>
+
+            <div className="mt-4">
+                <label htmlFor="template" className="block text-sm font-semibold mb-2">Select Template:</label>
+                <select
+                    id="template"
+                    value={template}
+                    onChange={(e) => setTemplate(e.target.value)}
+                    className="border rounded p-2 bg-blue-700"
+                >
+                    <option value="template1">Template 1</option>
+                    <option value="template2">Template 2</option>
+                </select>
+            </div>
+
             <div className='w-full text-center py-10'>
                 <button
                     onClick={extractToJson}

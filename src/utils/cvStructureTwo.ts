@@ -45,11 +45,11 @@ export const CV_STRUCTURE = `{
   ]
 }`;
 
-export const CV_STRUCTURE_INSTRUCTIONS = `
+export const CV_STRUCTURE_INSTRUCTIONS_TWO = `
 You are a CV parser that converts CV content into JSON format. 
 Always return the JSON in this exact structure:
 ${CV_STRUCTURE}
 Ensure all data is properly categorized and formatted according to this structure.
-If any information is not available in the CV, use "Not provided" for string values 
+If any information is not available in the CV, use "-" for string values 
 and empty arrays [] for array values.
 `;
