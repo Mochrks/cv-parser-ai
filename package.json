@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dqbd/tiktoken": "^1.0.17",
     "axios": "^1.7.7",
     "cv-project": "file:",
     "dotenv": "^16.4.5",
