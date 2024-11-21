@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from 'react';
 import { File } from 'lucide-react';
-
+import { CloudUpload } from 'lucide-react';
 interface FileItem {
     name: string;
     content: string;
@@ -143,6 +143,10 @@ export default function UploadFile() {
                     onChange={(e) => handleFileUpload(e.target.files)}
                     className="hidden"
                 />
+                <div className='flex items-center justify-center py-6'>
+                    <CloudUpload className='w-[60px] h-[60px]' />
+                </div>
+
                 <p>Drag and drop your PDF file here or click to select file</p>
                 {files && (
                     <div className="mt-4">
@@ -157,7 +161,7 @@ export default function UploadFile() {
                 )}
             </div>
 
-            <div className="mt-4">
+            <div className="flex flex-col items-center justify-center mt-10">
                 <label htmlFor="template" className="block text-sm font-semibold mb-2">Select Template:</label>
                 <select
                     id="template"
@@ -174,7 +178,7 @@ export default function UploadFile() {
                 <button
                     onClick={extractToJson}
                     disabled={isLoading || !files}
-                    className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
+                    className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300 disabled:text-gray-400"
                 >
                     {isLoading ? 'Processing...' : 'Generate JSON'}
                 </button>
