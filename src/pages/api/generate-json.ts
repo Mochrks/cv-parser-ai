@@ -36,6 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!resultContent) {
       return res.status(500).json({ error: 'No content received from OpenAI' });
     }
+    
 
     let parsedContent;
     try {

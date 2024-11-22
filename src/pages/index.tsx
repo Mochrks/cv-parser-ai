@@ -1,6 +1,5 @@
 "use client";
 
-
 // import ExampleAI from "@/components/ExampleAI";
 import UploadFile from "@/components/UploadFile";
 
