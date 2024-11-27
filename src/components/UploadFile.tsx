@@ -2,7 +2,7 @@
 import React, { useRef, useState } from 'react';
 import { File } from 'lucide-react';
 import { CloudUpload } from 'lucide-react';
-import countTokens from '@/test/countTokens';
+// import countTokens from '@/test/countTokens';
 interface FileItem {
     name: string;
     content: string;
@@ -101,8 +101,8 @@ export default function UploadFile() {
             console.log('PDF processed successfully');
 
             console.log('Generating JSON...');
-            const tokenCountText = countTokens(text, 'gpt-4o-mini');
-            console.log(`Count token result pdf parse: ${tokenCountText}`);
+            // const tokenCountText = countTokens(text, 'gpt-4o-mini');
+            // console.log(`Count token result pdf parse: ${tokenCountText}`);
 
             const jsonResponse = await fetch('/api/generate-json', {
                 method: 'POST',
