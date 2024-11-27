@@ -1,4 +1,5 @@
 import { encoding_for_model } from '@dqbd/tiktoken';
+import type { TiktokenModel } from '@dqbd/tiktoken';
 // const modelName = "gpt-4o-mini";
 
 // Text input
@@ -76,7 +77,7 @@ import { encoding_for_model } from '@dqbd/tiktoken';
 
 // count tokens
 function countTokens(text: string, model: string) {
-  const encoding = encoding_for_model(model);
+  const encoding = encoding_for_model(model as TiktokenModel);
   const tokens = encoding.encode(text);
   const tokenCount = tokens.length; 
   encoding.free(); 
