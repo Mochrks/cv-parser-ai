@@ -62,8 +62,7 @@ const ContentScanner: React.FC<ContentScannerProps> = ({
     useEffect(() => {
         const interval = setInterval(() => {
             startScanning();
-        }, 2000);
-
+        }, 6000);
 
         return () => clearInterval(interval);
     }, []);
@@ -174,7 +173,7 @@ const ContentScanner: React.FC<ContentScannerProps> = ({
                                 className="inline-flex h-8 w-6 flex-col items-center justify-center"
                             >
                                 {[digit, (digit + 1) % 10, (digit + 2) % 10].map((n, i) => (
-                                    <span key={i} className="font-bold leading-8 text-white">
+                                    <span key={i} className="font-bold leading-8 text-text-slate-900">
                                         {n}
                                     </span>
                                 ))}
@@ -187,7 +186,7 @@ const ContentScanner: React.FC<ContentScannerProps> = ({
     };
 
     return (
-        <div className="relative mx-auto w-full max-w-2xl rounded-lg shadow-md py-4">
+        <div className="relative mx-auto w-full max-w-2xl rounded-lg  py-6">
             <motion.div
                 ref={containerRef}
                 className="relative overflow-hidden rounded bg-white p-4 shadow-lg"
@@ -215,11 +214,11 @@ const ContentScanner: React.FC<ContentScannerProps> = ({
                 </motion.div>
             </motion.div>
 
-            <div className="rounded">
-                <div className="relative mt-2 overflow-hidden text-center text-sm text-white">
+            <div className="rounded pt-5">
+                <div className="relative mt-2 overflow-hidden text-center text-sm text-slate-600">
                     <div className="flex items-center justify-center">
                         {aiProbability > 0 && renderAiProbability(Math.floor(aiProbability))}
-                        <span className="ml-1 font-bold text-white">%</span>
+                        <span className="ml-1 font-bold text-slate-600">%</span>
                         <span className="ml-1">AI Scanning Content Probability</span>
                     </div>
                 </div>

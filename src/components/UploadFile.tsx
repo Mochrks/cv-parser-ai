@@ -1,8 +1,11 @@
 "use client";
 import React, { useRef, useState } from 'react';
-import { File } from 'lucide-react';
+import { File, Loader2 } from 'lucide-react';
 import { CloudUpload } from 'lucide-react';
 import ContentScanner from './animata/content-scan';
+import { motion } from 'framer-motion';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Button } from './ui/button';
 // import countTokens from '@/test/countTokens';
 interface FileItem {
     name: string;
@@ -131,83 +134,93 @@ export default function UploadFile() {
     };
 
     return (
-        <div className="w-full p-10">
-
-            <ContentScanner
-                content="Ten years ago there were only five private prisons in the country, with a population of 2,000 inmates; now, 30 there are 100, with 62,000 inmates. It is expected that by the coming decade, the number will hit 360,000 according to reports. The private contracting of prisoners for work fosters."
-                highlightWords={[
-                    'Ten years ago',
-                    'only five private prisons',
-                    'now, 30',
-                    '62,000',
-                    'are 100',
-                    '62\,000 inmates',
-                    'expected',
-                    'coming decade'
-                ]}
-                reverseDuration={1}
-                scanDuration={6}
-            />
-
-            <h1 className="text-4xl font-bold text-center py-10 mt-10">Upload File Generate To Json </h1>
-            <div
-                className={`mx-auto max-w-5xl border-2  border-dashed rounded-lg p-8 text-center 
-                ${dragActive ? 'border-primary' : 'border-gray-300'}`}
-                onDragEnter={handleDrag}
-                onDragLeave={handleDrag}
-                onDragOver={handleDrag}
-                onDrop={handleDrop}
-                onClick={openFileDialog}
-            >
-                <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept=".pdf"
-                    onChange={(e) => handleFileUpload(e.target.files)}
-                    className="hidden"
+        <div className="w-full p-5  flex flex-col items-center justify-center  ">
+            <div className="w-full max-w-3xl bg-white rounded-xl shadow-2xl p-10 mt-20">
+                <h1 className="text-4xl font-bold text-center py-8 text-blue-700">Upload File & Generate JSON</h1>
+                <ContentScanner
+                    content="The user has over 10 years of experience in technology, covering both front-end and back-end development. With extensive expertise in React, .NET, and NestJS, the user has successfully delivered various projects ranging from UI component libraries to REST API development. Additionally, the user's experience includes building modern UI components using TailwindCSS and ShadCN."
+                    highlightWords={[
+                        'over 10 years',
+                        'front-end development',
+                        'back-end development',
+                        'React',
+                        '.NET',
+                        'NestJS',
+                        'TailwindCSS',
+                        'ShadCN'
+                    ]}
+                    reverseDuration={1}
+                    scanDuration={9}
                 />
-                <div className='flex items-center justify-center py-6'>
-                    <CloudUpload className='w-[60px] h-[60px]' />
+                <div
+                    className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors duration-300 ease-in-out
+                    ${dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400 hover:bg-blue-50'}`}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                    onClick={openFileDialog}
+                >
+                    <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept=".pdf"
+                        onChange={(e) => handleFileUpload(e.target.files)}
+                        className="hidden"
+                    />
+                    <motion.div
+                        className='flex items-center justify-center py-6'
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ repeat: Infinity, duration: 2 }}
+                    >
+                        <CloudUpload className='w-20 h-20 text-blue-500' />
+                    </motion.div>
+
+                    <p className="text-lg text-gray-600">Drag and drop your PDF file here or click to select file</p>
+
+                    {files && (
+                        <div className="mt-4 bg-blue-100 p-4 rounded-lg">
+                            <h4 className="text-sm font-semibold py-2 text-blue-700">Uploaded File:</h4>
+                            <ul className="text-center">
+                                <li className="text-sm flex items-center justify-center text-gray-700">
+                                    <File className="mr-2 h-4 w-4" />
+                                    {files.name} ({formatFileSize(files.size)})
+                                </li>
+                            </ul>
+                        </div>
+                    )}
                 </div>
-
-                <p>Drag and drop your PDF file here or click to select file</p>
-                {files && (
-                    <div className="mt-4">
-                        <h4 className="text-sm font-semibold mb-2">Uploaded File:</h4>
-                        <ul className="text-left">
-                            <li className="text-sm">
-                                <File className="inline mr-2 h-4 w-4" />
-                                {files.name} ({formatFileSize(files.size)})
-                            </li>
-                        </ul>
+                <div className='w-full text-center pt-8 space-y-4'>
+                    <div className="flex items-center justify-center space-x-4">
+                        <Select value={template} onValueChange={setTemplate} >
+                            <SelectTrigger className="w-[200px]">
+                                <SelectValue placeholder="Select template" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="template1">Template 1</SelectItem>
+                                <SelectItem value="template2">Template 2</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <Button
+                            onClick={extractToJson}
+                            disabled={isLoading || !files}
+                            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:bg-gray-300 disabled:text-gray-500"
+                        >
+                            {isLoading ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Processing...
+                                </>
+                            ) : (
+                                'Generate JSON'
+                            )}
+                        </Button>
                     </div>
-                )}
+                </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center mt-10">
-                <label htmlFor="template" className="block text-sm font-semibold mb-2">Select Template:</label>
-                <select
-                    id="template"
-                    value={template}
-                    onChange={(e) => setTemplate(e.target.value)}
-                    className="border rounded p-2 bg-blue-700"
-                >
-                    <option value="template1">Template 1</option>
-                    <option value="template2">Template 2</option>
-                </select>
-            </div>
-
-            <div className='w-full text-center py-10'>
-                <button
-                    onClick={extractToJson}
-                    disabled={isLoading || !files}
-                    className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300 disabled:text-gray-400"
-                >
-                    {isLoading ? 'Processing...' : 'Generate JSON'}
-                </button>
-            </div>
             {output && (
-                <div className='w-full text-left pt-10'>
+                <div className='w-full text-left p-10'>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto text-black">
                         {output}
                     </pre>

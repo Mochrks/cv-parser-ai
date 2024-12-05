@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@dqbd/tiktoken": "^1.0.17",
+    "@radix-ui/react-select": "^2.1.2",
+    "@radix-ui/react-slot": "^1.1.0",
     "axios": "^1.7.7",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "cv-project": "file:",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
@@ -21,7 +25,9 @@
     "pdf-parse": "^1.1.1",
     "pdfjs-dist": "^4.7.76",
     "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028"
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20.17.4",

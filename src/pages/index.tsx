@@ -1,6 +1,5 @@
 "use client";
 
-import ContentScanner from "@/components/animata/content-scan";
 // import ExampleAI from "@/components/ExampleAI";
 import UploadFile from "@/components/UploadFile";
 
@@ -13,13 +12,12 @@ export default function Home() {
       </div> */}
       <div className="flex-1">
         <UploadFile />
-
       </div>
 
       <footer className="flex items-end w-full ">
-        <div className="container mx-auto flex justify-center items-center py-4">
+        <div className="container mx-auto flex justify-center items-center py-4 ">
           <p className="text-sm text-muted-foreground text-center">
-            © {new Date().getFullYear()} All rights reserved by <a href="https://github.com/Mochrks" className="hover:underline">@mochrks</a>
+            © {new Date().getFullYear()} All rights reserved by <a href="https://github.com/Mochrks" className="hover:underline text-white">@mochrks</a>
           </p>
         </div>
       </footer>
