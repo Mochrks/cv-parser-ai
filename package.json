@@ -14,6 +14,7 @@
     "cv-project": "file:",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
+    "framer-motion": "^11.13.1",
     "lucide-react": "^0.454.0",
     "next": "15.0.2",
     "openai": "^4.72.0",

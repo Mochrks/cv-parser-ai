@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react';
 import { File } from 'lucide-react';
 import { CloudUpload } from 'lucide-react';
+import ContentScanner from './animata/content-scan';
 // import countTokens from '@/test/countTokens';
 interface FileItem {
     name: string;
@@ -131,9 +132,26 @@ export default function UploadFile() {
 
     return (
         <div className="w-full p-10">
-            <h1 className="text-4xl font-bold text-center py-10">Upload File Generate To Json </h1>
+
+            <ContentScanner
+                content="Ten years ago there were only five private prisons in the country, with a population of 2,000 inmates; now, 30 there are 100, with 62,000 inmates. It is expected that by the coming decade, the number will hit 360,000 according to reports. The private contracting of prisoners for work fosters."
+                highlightWords={[
+                    'Ten years ago',
+                    'only five private prisons',
+                    'now, 30',
+                    '62,000',
+                    'are 100',
+                    '62\,000 inmates',
+                    'expected',
+                    'coming decade'
+                ]}
+                reverseDuration={1}
+                scanDuration={6}
+            />
+
+            <h1 className="text-4xl font-bold text-center py-10 mt-10">Upload File Generate To Json </h1>
             <div
-                className={`mx-auto max-w-5xl border-2 border-dashed rounded-lg p-8 text-center 
+                className={`mx-auto max-w-5xl border-2  border-dashed rounded-lg p-8 text-center 
                 ${dragActive ? 'border-primary' : 'border-gray-300'}`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}

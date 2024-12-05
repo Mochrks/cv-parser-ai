@@ -1,5 +1,6 @@
 "use client";
 
+import ContentScanner from "@/components/animata/content-scan";
 // import ExampleAI from "@/components/ExampleAI";
 import UploadFile from "@/components/UploadFile";
 
@@ -12,7 +13,9 @@ export default function Home() {
       </div> */}
       <div className="flex-1">
         <UploadFile />
+
       </div>
+
       <footer className="flex items-end w-full ">
         <div className="container mx-auto flex justify-center items-center py-4">
           <p className="text-sm text-muted-foreground text-center">
